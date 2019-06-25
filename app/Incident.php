@@ -6,12 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Incident extends Model
 {
+
+
+        protected $fillable = ['title', 'description', 'severity', 'modelo', 'marca',
+        'active','cliente','tecnico','ubicacion','codigoOrden'];
+
+
+
+
+
     // validation
     public static $rules = [
         'category_id' => 'sometimes|exists:categories,id',
         'severity' => 'required|in:M,N,A',
         'title' => 'required|min:5',
-        'description' => 'required|min:15'
+       'description' => 'required|min:5',
+        'ubicacion' => 'required|min:5',
+        'tecnico' => 'required|min:5'
     ];
 
     public static $messages = [
@@ -54,6 +65,11 @@ class Incident extends Model
     public function messages()
     {
         return $this->hasMany('App\Message');
+    }
+
+    public function technical()
+    {
+        return $this->belongsTo('App\Technical');
     }
 
 
@@ -106,4 +122,6 @@ class Incident extends Model
 
         return 'Pendiente';
     }
+
+
 }

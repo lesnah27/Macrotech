@@ -65,7 +65,8 @@
 							<tr>
 								<td>
 									<a href="/ver/{{ $incident->id }}">
-										{{ $incident->id }}
+                                        {{ $incident->id }}
+
 									</a>
 								</td>
 								<td>{{ $incident->category_name }}</td>
@@ -98,7 +99,8 @@
 							<th>Categoría</th>
 							<th>Severidad</th>
 							<th>Estado</th>
-							<th>Fecha creación</th>
+                            <th>Fecha creación</th>
+                            <th>Fecha de Actualizacion</th>
 							<th>Título</th>
 							<th>Responsable</th>
 						</tr>
@@ -108,17 +110,31 @@
 							<tr>
 								<td>
 									<a href="/ver/{{ $incident->id }}">
-										{{ $incident->id }}
+										{{ $incident->codigoOrden }}
 									</a>
 								</td>
 								<td>{{ $incident->category_name }}</td>
 								<td>{{ $incident->severity_full }}</td>
 								<td>{{ $incident->state }}</td>
-								<td>{{ $incident->created_at }}</td>
+                                <td>{{ $incident->created_at }}</td>
+                                <td>{{ $incident->updated_at  }}</td>
 								<td>{{ $incident->title_short }}</td>
 								<td>
-									{{ $incident->support_id ? $incident->support->name : 'Sin asignar' }}
+                                    {{-- $incident->support_id ? $incident->support->name : 'Sin asignar' --}}
+                                    {{ $incident->tecnico ? $incident->tecnico : 'Sin asignar' }}
 								</td>
+
+								<!--
+                                 <td>
+                                    <select name="category_id" class="form-control">
+
+                                        <option value="">General</option>
+                                          <option value="">Ing.Hansel</option>
+                                           <option value="">Ing.Luis De Leon</option>
+
+                                    </select>
+                                </td>
+							-->
 							</tr>
 						@endforeach
 					</tbody>

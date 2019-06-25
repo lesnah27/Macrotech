@@ -1,7 +1,8 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+    $user = App\User::first();
+    return view('welcome' , compact('user'));
 });
 
 Route::get('/instrucciones', function () {
@@ -36,6 +37,7 @@ Route::get('/incidencia/{id}/resolver', 'IncidentController@solve');
 Route::get('/incidencia/{id}/abrir', 'IncidentController@open');
 Route::get('/incidencia/{id}/derivar', 'IncidentController@nextLevel');
 
+Route::get('generate-pdf','HomeController@generatePDF');
 
 // Message
 Route::post('/mensajes', 'MessageController@store');

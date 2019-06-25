@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Incident;
 use App\ProjectUser;
+use PDF;
 
 class HomeController extends Controller
 {
@@ -53,6 +54,14 @@ class HomeController extends Controller
         $user->save();
 
         return back();
+    }
+
+    public function generatePDF()
+    {
+        $user = ['title' => 'Welcome to HDTuto.com'];
+        $pdf = PDF::loadView('myPDF', $user);
+
+        return $pdf->download('itsolutionstuff.pdf');
     }
 
 }

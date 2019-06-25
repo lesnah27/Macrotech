@@ -7,6 +7,7 @@ use App\Category;
 use App\Incident;
 use App\Project;
 use App\ProjectUser;
+use App\Technical;
 
 class IncidentController extends Controller
 {
@@ -19,6 +20,7 @@ class IncidentController extends Controller
     public function show($id)
     {
         $incident = Incident::findOrFail($id);
+
         $messages = $incident->messages;
         return view('incidents.show')->with(compact('incident', 'messages'));
     }
@@ -26,7 +28,8 @@ class IncidentController extends Controller
     public function create()
     {
         $categories = Category::where('project_id', auth()->user()->selected_project_id)->get();
-        return view('incidents.create')->with(compact('categories'));
+
+        return view('incidents.create')->with(compact('categories','technical'));
     }
 
     public function store(Request $request)
@@ -38,6 +41,13 @@ class IncidentController extends Controller
         $incident->severity = $request->input('severity');
         $incident->title = $request->input('title');
         $incident->description = $request->input('description');
+        $incident->serial = $request->input('serial');
+        $incident->modelo = $request->input('modelo');
+        $incident->marca = $request->input('marca');
+        $incident->cliente = $request->input('cliente');
+        $incident->ubicacion = $request->input('ubicacion');
+        $incident->tecnico = $request->input('tecnico');
+        $incident->codigoOrden = $request->input('codigoOrden');
 
         $user = auth()->user();
 
@@ -67,6 +77,13 @@ class IncidentController extends Controller
         $incident->severity = $request->input('severity');
         $incident->title = $request->input('title');
         $incident->description = $request->input('description');
+        $incident->serial = $request->input('serial');
+        $incident->modelo = $request->input('modelo');
+        $incident->marca = $request->input('marca');
+        $incident->cliente = $request->input('cliente');
+        $incident->ubicacion = $request->input('ubicacion');
+        $incident->tecnico = $request->input('tecnico');
+        $incident->codigoOrden = $request->input('codigoOrden');
 
         $incident->save();
         return redirect("/ver/$id");

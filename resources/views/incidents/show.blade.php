@@ -17,7 +17,7 @@
                     <th>Código</th>
                     <th>Proyecto</th>
                     <th>Categoría</th>
-                    <th>Fecha de envío</th>
+                    <th>Fecha de reporte</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,14 +36,42 @@
                     <th>Severidad</th>
                 </tr>
             </thead>
+
             <tbody>
                 <tr>
-                    <td id="incident_responsible">{{ $incident->support_name }}</td>
+                 <!--   <td id="incident_responsible">{{-- $incident->support_name--}} </td> -->
+                    <td>{{ $incident->tecnico }}</td>
                     <td>{{ $incident->level->name }}</td>
                     <td id="incident_state">{{ $incident->state }}</td>
                     <td id="incident_severity">{{ $incident->severity_full }}</td>
                 </tr>
+
+                <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Fecha de asignacion</th>
+                        </tr>
+                    </thead>
             </tbody>
+            <tbody>
+                    <tr>
+                        <td id="incident_key">{{ $incident->serial }}</td>
+                        <td id="incident_project">{{ $incident->marca }}</td>
+                        <td id="incident_category">{{ $incident->category_name }}</td>
+                        <td id="incident_created_at">{{ $incident->updated_at }}</td>
+                    </tr>
+                </tbody>
+
+
+
+
+
+
+
+
+
         </table>
 
         <table class="table table-bordered">
@@ -52,6 +80,13 @@
                     <th>Título</th>
                     <td id="incident_summary">{{ $incident->title }}</td>
                 </tr>
+
+                <tr>
+                        <th>Ubicacion</th>
+                        <td id="incident_summary">{{ $incident->title }}</td>
+                    </tr>
+
+
                 <tr>
                     <th>Descripción</th>
                     <td id="incident_description">{{ $incident->description }}</td>
@@ -74,6 +109,11 @@
                 <a href="/incidencia/{{ $incident->id }}/resolver" class="btn btn-info btn-sm" id="incident_btn_solve">
                     Marcar como resuelto
                 </a>
+
+
+
+
+
                 <a href="/incidencia/{{ $incident->id }}/editar" class="btn btn-success btn-sm" id="incident_btn_edit">
                     Editar incidencia
                 </a>

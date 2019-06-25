@@ -17,6 +17,7 @@ class CreateIncidentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('description');
+
             $table->string('severity', 1);
 
             $table->boolean('active')->default(1);
@@ -35,6 +36,9 @@ class CreateIncidentsTable extends Migration
 
             $table->unsignedBigInteger('support_id')->nullable();
             $table->foreign('support_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('technical_id')->nullable();
+            $table->foreign('technical_id')->references('id')->on('technicals');
 
 
 
